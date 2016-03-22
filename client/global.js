@@ -125,30 +125,29 @@ Template.main.events({
           
                //first message view
           if(Session.get('messageViews') === 0){
-            
-              Session.set('messageViews', 1);
-                
-              messageCycle('First, the green pencil button allows you to edit the name of your project and delete it! There is a prompt before a project actually is deleted');
-            
-              return;
+                Session.set('messageViews', 1);
+
+                messageCycle('First, the green pencil button allows you to edit the name of your project and delete it! There is a prompt before a project actually is deleted');
+
+                return;
           }
           //second message view
           if(Session.get('messageViews') === 1){
                 Session.set('messageViews', 2);
                 
-                messageCycle("Notice, tasks appear here much like the last screen, giving you access to all the details. But, as the admin you can edit any part of the task with the 'edit' button. Give it a try!")  
+                messageCycle("Notice, tasks appear here much like the last screen, giving you access to all the details. But, as the admin you can edit any part of the task with the 'edit' button.")  
             
-                return
+                return;
           }
           //third message view
           if(Session.get('messageViews') === 2){
                 Session.set('messageViews', 3);
                 
-                messageCycle("You can add tasks with the 'add task' button. Pretty self-explanitory. Some of the options for you are dynamically generated based off of your team the and project tasks")  
-            
+                messageCycle("You can add tasks with the 'add task' button. Pretty self-explanitory. The project Gantt Chart will auto update when any changes are made.")  
+            ;
                 return
           }
-          //fourth message view
+          //forth message view
           if(Session.get('messageViews') === 3){
                 Session.set('messageViews', 4);
                 
@@ -189,7 +188,7 @@ Template.home.onRendered(function(){
   $('#helperGuide').removeClass('helper-guide-appear');
   setTimeout(function(){
     $('#helperGuide').addClass('helper-guide-appear');
-    $('#helperMessage').text("In 'My Projects' there projects you have created, and in 'Tasks' you find projects and tasks that have been assigned to you."); 
+    $('#helperMessage').text("In 'Your Projects' there are projects you have created, and in 'Your Tasks' you find projects and tasks that have been assigned to you."); 
   }, 500)
   }
 });
