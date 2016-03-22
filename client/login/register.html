@@ -1,0 +1,32 @@
+<template name="register">
+ 
+<div class="container">
+  <div class="register-area col-sm-4 col-sm-offset-4">
+    <h2>Register <span> success!</span></h2>
+    <form class="register">
+        <small>Username must start with @</small>
+        <input type="text" class="form-control" name="username" placeholder="Username" required>
+        
+        <input type="email" class="form-control" name="email" placeholder="Email" required>
+        
+        <input type="password" class="form-control" name="password" placeholder="password" required>
+        
+        <input type="password" class="form-control" name="password2" placeholder="password (again)" required>
+        <small>Only fill out if your team is already set up</small>
+        <input type="text" class="form-control" name="team" placeholder="Team">
+        
+        <input type="text" class="form-control" name="teampassword" placeholder="Team Password">
+        
+        
+        <p id="failed"></p>
+        <br/>
+      <button>Register</button>
+    </form>
+    <hr/>
+    <p><u>Need to register a New Team?</u> Leave the team field blank and you will be promted to set up a team on the following page</p>
+    <p>Already a user? <a href="/login">Login</a></p>
+    
+  </div>
+</div> 
+    
+</template>

@@ -1,0 +1,39 @@
+
+<template name="teamRegister">
+
+<div class="container">
+ <br/>
+ <br/>
+  <div class="col-md-4 col-md-offset-2">
+   
+    <div class="team-join">
+     <h2>Join an existing Team <span> success!</span></h2>
+      <form id="joinTeam">
+        <small>must start with #</small>
+        <input type="text" class="form-control" name="team" placeholder="Team Name">
+        
+        <input type="text" class="form-control" name="teampassword" placeholder="Team Password">
+        <p id="teamFound"></p>
+        <br>
+        <button>Join</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-4 col-md-offset-1">  
+    <div class="team-register">
+     <h2>Establish a new Team <span> success!</span></h2>
+      <form id="formTeam">
+        <small>must start with #</small>
+        <input type="text" class="form-control" name="team" placeholder="Team Name">
+        <input type="text" class="form-control" name="teampassword" placeholder="Team Password">
+        <br>
+        <button>Register New Team</button>
+      </form>
+      <hr>
+      <p id="failed"></p>
+      <p>You will be set up as your team's administrator, giving you permission to manage your team members</p>
+    </div>
+  </div>
+</div>
+ 
+</template>    

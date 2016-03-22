@@ -1,0 +1,129 @@
+<template name="home">
+<div class="homePage">
+  <div class="new-project col-sm-3">
+    <button class="btn btn-warning" id="showForm">New Project</button>
+      <form>
+          <label for="projectName">Project Name <small class="pull-right">Press 'enter' to submit</small></label>
+          <input class="form-control" type="text" name="projectName" required>
+      </form>
+  </div>
+    <div class="row row-padding">
+      <div class="col-md-6 col-md-offset-3">
+       <h1 class="color-blue text-center">Your Projects</h1>
+        {{#each myProjects}}
+          {{> projectsTemplate}}
+        {{/each}}
+      </div>
+    </div>
+    
+    <div class="row row-padding">
+      <div class="col-md-6 col-md-offset-3">
+       <h1 class="color-blue text-center">Your Tasks</h1>
+        
+        {{#each projects}}
+          {{> projectsTemplate}}
+        {{/each}}
+      </div>
+    </div>
+</div>
+  <script>
+      
+    var rangeSlider = function(){
+      var slider = $('.range-slider'),
+      range = $('.range-slider__range'),
+      value = $('.range-slider__value').children('span');
+
+      slider.each(function(){
+
+        value.each(function(){
+          var value = $(this).prev().attr('value');
+          $(this).html(value);
+        });
+
+        range.on('input', function(){
+          $(this).next(value).html(this.value+'%');
+      });
+      });
+    };
+
+    rangeSlider();
+           
+      $('.task-labels, .detail, .saveProgress').hide();
+
+      // Toggles the task labels on click
+      $('.project-page-tasks').on('click', '.project-task-header', function(){
+          $(this).next(".task-labels").slideToggle(150);
+          $(".detail").hide();
+      });
+
+      //Toggles the tasks
+      $('.project-page-tasks').on('click', '.btn', function(){
+          var selector = $(this).attr('name');
+            console.log(selector);
+          var status  = $(this).parents(".project-tasks").find("."+selector).css("display");
+            console.log(status);
+          if (status == "block")
+            {
+            $(this).parents(".project-tasks").find("."+selector).hide()
+            return;
+            }
+
+          $(".detail").hide();
+
+          $(this).parents(".project-tasks").find("."+selector).show();      
+      });
+
+  </script>
+</template>
+
+
+<template name="projectsTemplate">
+  <div class="row">
+    <div class="project projectLink">
+      <h3 class="text-center">{{projectName}}</h3>
+    </div>
+    <div class="sidebar col-xs-10 col-xs-offset-1 project-page-tasks">
+    {{#each this.tasks}}
+            {{> tasks}}
+    {{/each}}
+    </div>
+  </div> 
+</template>
+
+
+<template name="tasks">
+    <div class="project-tasks">
+      <h3 class="text-center project-task-header">{{name}}</h3>
+      <div class="task-labels text-center">
+        
+        <div class="range-area">
+           <!--Thank you to Sean Stopnik on CodePen for the range style and functionality-->
+            <div class="range-slider">
+              <h5>Report Your Progress <span class="btn-success btn-xs saveProgress">Save</span></h5>
+              <input class="range-slider__range" type="range" name="rangeValue" value="{{percentComplete}}" min="0" max="100">
+              <span class="range-slider__value"><span>{{percentComplete}}</span>%</span>
+            </div>
+        </div>
+       
+        <button class="btn btn-default btn-xs" name="btn-category">Category</button>
+        <button class="btn btn-primary btn-xs" name="btn-assignments">Assignments</button>
+        <button class="btn btn-success btn-xs" name="btn-dependencies">Dependencies</button>
+        <button class="btn btn-info btn-xs" name="btn-duration">Duration</button>
+        <button class="btn btn-danger btn-xs" name="btn-description">Description</button>
+        <button class="btn btn-warning btn-xs" name="btn-start">Start</button>
+      </div>
+
+      <div class="task-details text-center">
+        <h4 class="detail btn-category">{{this.resource}}</h4> 
+        {{#each this.assignments}}
+        <h4 class="detail btn-assignments">{{this}}</h4>  
+        {{/each}} 
+        {{#each this.dependencies}}
+        <h4 class="detail btn-dependencies">{{this}}</h4> 
+        {{/each}}
+        <h4 class="detail btn-duration">{{this.duration}} Days</h4>
+        <p class="detail btn-description">{{this.description}}</p>
+        <h4 class="detail btn-start">{{#if this.start}}{{this.start}}{{else}} Start date dependent on completion of another task{{/if}}</h4>
+      </div>
+    </div>
+</template>

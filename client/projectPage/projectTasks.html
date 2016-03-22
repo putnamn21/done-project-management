@@ -1,0 +1,60 @@
+<template name="projectTasks">
+
+<div class="project-tasks">
+ {{#if isOwner owner}}
+ <button class="btn btn-danger btn-xs pull-right deleteTask">Delete</button>
+ <button class="btn btn-warning btn-xs pull-right editTask">Edit</button>
+ {{/if}}
+ <h3 class="text-center project-task-header">{{name}}</h3>
+ <div class="task-labels text-center">
+    <button class="btn btn-default btn-xs" name="btn-category">Category</button>
+    <button class="btn btn-primary btn-xs" name="btn-assignments">Assignments</button>
+    <button class="btn btn-success btn-xs" name="btn-dependencies">Dependencies</button>
+    <button class="btn btn-info btn-xs" name="btn-duration">Duration</button>
+    <button class="btn btn-warning btn-xs" name="btn-percent">Complete %</button>
+    <button class="btn btn-danger btn-xs" name="btn-description">Description</button>
+    <button class="btn btn-mybutton btn-xs" name="btn-start">Start</button>
+  </div>
+  
+  <div class="task-details text-center">
+    
+    
+     {{#if isOwner owner}}
+       <form class="editable-details">
+           <input type="text" class="detail btn-category" value="{{resource}}" name="category">
+           <select multiple class="form-control detail btn-assignments" name="assignments" required>
+              {{#each team.users}}
+              <option>{{this}}</option>
+              {{/each}}
+            </select>
+           <select multiple class="form-control detail btn-dependencies" name="dependencies" required>
+             <option>none</option>
+             {{#each tasks projectId}}
+              <option>{{this.name}}</option>
+             {{/each}}
+           </select>
+           <input type="number" class="detail btn-duration" value="{{duration}}" name="duration"><span class="detail btn-duration">days</span>
+           <input type="number" class="detail btn-percent" value="{{percentComplete}}" name="percent"><span class="detail btn-percent">%</span>
+           <input type="text" class="detail btn-description" value="{{description}}" name="description">
+           <input type="date" class="detail btn-start" value="{{start}}" name="start">
+       </form>
+     {{/if}}
+     
+     
+     <div class="displayed-details">
+        <h4 class="detail btn-category">{{resource}}</h4>    
+          {{#each assignments}}
+            <h4 class="detail btn-assignments">{{this}}</h4>
+          {{/each}}
+          {{#each dependencies}}
+            <h4 class="detail btn-dependencies">{{this}}</h4>  
+          {{/each}}
+        <h4 class="detail btn-duration">{{duration}} days</h4>
+        <h4 class="detail btn-percent">{{percentComplete}}%</h4>
+        <h4 class="detail btn-description">{{description}}</h4>
+        <h4 class="detail btn-start">{{start}}</h4>
+    </div>
+  </div>
+</div>
+
+</template>

@@ -1,0 +1,82 @@
+<template name="project">
+
+<div class="contain">
+   <div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6">
+     {{#if isOwner owner}}
+     <div class="btn-group">
+        <button id="editProject" type="button" class="roundEdges btn btn-success btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+        <button id="deleteProject" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+      </div>
+     {{/if}}
+      <h3 class="head-label">{{projectName}}</h3>
+      <input class="head-label-edit" type="text" value="{{projectName}}">
+      <h5>Project Manager: {{owner}}</h5>
+      <h5>Team: {{this.team}}</h5>
+      {{#if isOwner owner}}
+       <button class="btn btn-danger pull-right" id="addTask">Add Task</button>
+      {{/if}}
+    </div>
+   </div>
+  
+  <div class="row">
+    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 pull-right">
+      <div class="content">
+        <div id="chart-container"></div>
+      </div>
+    </div>
+
+    <div class="sidebar col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+      <div class="project-page-tasks">
+      
+        {{#each tasks _id}} {{> projectTasks}} {{/each}}
+      
+      </div>
+      
+     
+        <form class="form-group task-form">
+         
+          <label>Task Name</label>
+          <input type="text" class="form-control" name="name" required>
+        
+        
+          <label>Category</label>
+          <input type="text" class="form-control" name="category" required>
+        
+        
+          <label>Start Date</label>
+          <input type="date" class="form-control" name="start">
+       
+        
+          <label>Duration <small> (days)</small></label>
+          <input type="number" class="form-control" name="duration" required>
+        
+          <label>Assignments <small> (who is responsible for this task?)</small></label>
+          <select multiple class="form-control" name="assignments" required>
+            {{#each team.users}}
+            <option>{{this}}</option>
+            {{/each}}
+          </select>
+        
+          <label>Dependencies<small> (hold ctr/cmd to<br/> select more than one)</small></label>
+          <select multiple class="form-control" name="dependencies">
+            <option>none</option>
+            {{#each tasks _id}}
+            <option>{{this.name}}</option>
+            {{/each}}
+          </select>
+        
+          <label>Description</label>
+          <textarea type="text" class="form-control" name="description"></textarea>
+          <hr>
+          <div class="text-center"><button id="submitTask">Submit</button></div>
+
+        </form>   
+    </div>
+  </div>
+</div>
+
+{{> projectTasksScripts}}
+
+
+</template>
