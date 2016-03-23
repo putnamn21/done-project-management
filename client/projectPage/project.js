@@ -54,7 +54,7 @@ Template.project.events({
             event.target.category.value = '';
             event.target.description.value = '';
   },
-  'click #deleteProject': function(){
+  'click #deleteProject': function(event){
         var project = this;
         var choice = confirm('Are you sure you want to delete this project? You cannot undo this action.');
         if(choice){
@@ -65,7 +65,7 @@ Template.project.events({
               }, 750);
           }
   },
-  'click #editProject': function(){
+  'click #editProject': function(event){
         if(!Session.get('editProject')){
           $('#editProject').removeClass('roundEdges');
           $('#editProject').children('span').removeClass('glyphicon-pencil');
@@ -97,7 +97,7 @@ Template.project.events({
 
 
 Template.projectTasks.events({
-  'click .deleteTask': function(){
+  'click .deleteTask': function(event){
     
     var choice = confirm('Are you sure you want to delete this Task?');
     

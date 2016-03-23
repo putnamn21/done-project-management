@@ -79,8 +79,7 @@ Template.home.helpers({
 //*****************EVENTS*****************EVENTS*****************EVENTS*****************EVENTS*****************EVENTS
 
 Template.home.events({
-  'click #showForm': function(){
-    console.log('hello');
+  'click #showForm': function(event){
     $('.new-project').find('form').slideToggle(250);
   },
   'submit .new-project': function(event){
@@ -100,17 +99,17 @@ Template.home.events({
     $('.new-project').find('form').hide();
     event.target.projectName.value = '';
   },
-  'click .projectLink':function(){
+  'click .projectLink':function(event){
     var id = this._id;
     Router.go('/project/'+id);
   }
 });
 
 Template.tasks.events({
-  'mouseup .range-slider input':function(){
+  'mouseup .range-slider input':function(event){
     $(event.target).prev('h5').children('.saveProgress').show();
   },
-  'click .saveProgress':function(){
+  'click .saveProgress':function(event){
     $(event.target).parent('h5').next('input').trigger('submit');
     $('.range-slider__value').children('span').text('');
     $(event.target).hide();

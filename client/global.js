@@ -60,11 +60,11 @@ Template.main.events({
     
     
   },
-  'click #hideHelper': function(){
+  'click #hideHelper': function(event){
     Session.set('messageViews', undefined);
     $('#helperGuide').removeClass('helper-guide-appear');
   },
-  'click #nextText': function(){
+  'click #nextText': function(event){
         
         var page = Router.current().route.getName();
 
