@@ -39,7 +39,7 @@ Template.main.events({
     Meteor.logout();
     Router.go("login");
   },
-  'click #tutorial': function(){
+  'click #tutorial': function(event){
       event.preventDefault();
       Session.set('messageViews', 0);
       Meteor.logout();
