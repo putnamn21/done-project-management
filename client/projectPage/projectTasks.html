@@ -23,14 +23,22 @@
        <form class="editable-details">
            <input type="text" class="detail btn-category" value="{{resource}}" name="category">
            <select multiple class="form-control detail btn-assignments" name="assignments" required>
-              {{#each team.users}}
-              <option>{{this}}</option>
+              {{#each assignmentSelected team.users this}}
+                {{#if selected}}
+                  <option selected>{{name}}</option>
+                {{else}}
+                  <option>{{name}}</option>
+                {{/if}}
               {{/each}}
             </select>
            <select multiple class="form-control detail btn-dependencies" name="dependencies" required>
              <option>none</option>
-             {{#each tasks projectId}}
-              <option>{{this.name}}</option>
+             {{#each tasks projectId this}}
+               {{#if this.selected}}
+                 <option selected>{{this.name}}</option>
+               {{else}}
+                 <option>{{this.name}}</option>
+               {{/if}}
              {{/each}}
            </select>
            <input type="number" class="detail btn-duration" value="{{duration}}" name="duration"><span class="detail btn-duration">days</span>

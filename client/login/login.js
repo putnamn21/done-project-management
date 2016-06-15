@@ -105,6 +105,4 @@ Template.register.events({
         }
       }
     }
-  
-  
 });

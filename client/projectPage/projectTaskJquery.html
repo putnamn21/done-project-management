@@ -1,13 +1,13 @@
 <template name="projectTasksScripts">
   <script>
    $(document).ready(function(){
-     
+     console.log('Project Tasks jQuery Script loaded');
           function resizeInput() {
           var a = $(this).val().length+1  
           $(this).attr('size', a);
           }
      
-          console.log($('.project-page-tasks').find('input'))
+          
           // resize on key up        
           $('.project-page-tasks').find('input').keydown(resizeInput);
           $('.head-label-edit').keydown(resizeInput);
@@ -41,25 +41,24 @@
      
           //Toggles the add task form
           $('#addTask').click(function(){
-            var switcher;
-                
-            if($(this).text() === "Add Task"){
-              $(this).text("Hide Form");
-              switcher = true;
-            }else{
-              $(this).text("Add Task");
-              switcher = false;
-            }
-            
-            $('.task-form').slideToggle(300);
-            
-            if(switcher){
-               $('html, body').animate({
-                  scrollTop: $(".task-form").offset().top
-              }, 500);
-            }
-          });
-            
+              var switcher;
+
+              if($(this).text() === "Add Task"){
+                $(this).text("Hide Form");
+                switcher = true;
+              }else{
+                $(this).text("Add Task");
+                switcher = false;
+              }
+
+              $('.task-form').slideToggle(300);
+
+              if(switcher){
+                 $('html, body').animate({
+                    scrollTop: $(".task-form").offset().top
+                }, 500);
+              }
+          });     
    });
   </script>
 </template>
